@@ -1,0 +1,127 @@
+Today is more on Reading, Learning, and Implementing File Permissions
+The concept of Linux file permission and ownership is important in Linux. Today, we will work on Linux permissions and ownership, and perform tasks related to both.
+
+Tasks
+1:- Understanding File Permissions:
+  Create a simple file and run ls -ltr to see the details of the files. Refer to Notes
+  Each of the three permissions are assigned to three defined categories of users. The categories are:
+    Owner: The owner of the file or application.
+  Use chown to change the ownership permission of a file or directory.
+    Group: The group that owns the file or application.
+  Use chgrp to change the group permission of a file or directory.
+    Others: All users with access to the system (outside the users in a group).
+  Use chmod to change the other users' permissions of a file or directory.
+    Task: Change the user permissions of the file and note the changes after running ls -ltr.
+  
+  Solution:- 
+     >>- touch demo.txt
+     >>- ls -ltr
+         total 0
+         -rw-rw-r-- 1 ubuntu ubuntu 0 Oct 13 09:17 demo.txt
+     >>- sudo chown mansi demo.txt
+         -rw-rw-r-- 1 mansi ubuntu 0 Oct 13 09:17 demo.txt     
+     >>- sudo chgrp TWS demo.txt
+         -rw-rw-r-- 1 mansi TWS 0 Oct 13 09:17 demo.txt
+     >>- sudo chmod o+w demo.txt
+        -rw-rw-rw- 1 mansi TWS 0 Oct 13 09:17 demo.txt
+      
+2:- Writing an Article:
+
+Write an article about file permissions based on your understanding from the notes.
+Access Control Lists (ACL):
+  
+Task3: Create a directory and set specific ACL permissions for different users and groups. Verify the permissions using getfacl.
+Additional Tasks:
+   >>-setfacl -m u:mansi:rwx acl_dir
+  >>-getfacl acl_dir/
+          # file: acl_dir/
+          # owner: ubuntu
+          # group: ubuntu
+          user::rwx
+          user:mansi:rwx
+          group::rwx
+          mask::rwx
+
+Task4 : Create a script that changes the permissions of multiple files in a directory based on user input.
+      #!/bin/bash
+          #
+          #creating a script for the giving multiple permission
+          #
+          #
+          echo "Enter the dir path    :---"
+          
+          read dir_path
+          
+          echo "Enter the permission (Ie 777,760,750)"
+          read perm
+          
+          chmod -R $perm $dir_path
+          
+          echo "permission is grated to the users"
+  
+Task5: Write a script that sets ACL permissions for a user on a given file, based on user input.
+Understanding Sticky Bit, SUID, and SGID:
+  #!/bin/bash
+
+      echo "enter the file path for access:-"
+      read f_path
+      
+      echo "enter the username for per...:-"
+      read username
+      
+      echo "enter the permission for access...:-ex;;- rwx rx wx"
+      read perm
+      
+      sudo setfacl -m u:$username:$perm $f_path
+      
+      echo "Grated ACL permission to user"
+
+
+Read about sticky bit, SUID, and SGID.
+Task: Create examples demonstrating the use of sticky bit, SUID, and SGID, and explain their significance.
+Backup and Restore Permissions:
+  Stiky_bit
+        mkdir stiky_dir
+        ubuntu@ip-172-31-35-11:~/day6$ chmod +t stiky_dir/
+        ubuntu@ip-172-31-35-11:~/day6$ ls -lart
+        total 24
+        -rw-rwxrw-+  1 mansi  TWS       0 Oct 13 09:17 demo.txt
+        -rwxrwxr-x   1 ubuntu ubuntu  254 Oct 13 09:46 task4.sh
+        d------r--   2 ubuntu ubuntu 4096 Oct 13 09:47 day6
+        -rwxrwxr-x   1 ubuntu ubuntu  270 Oct 13 10:31 task5.sh
+        drwxr-x---  21 ubuntu ubuntu 4096 Oct 13 10:31 ..
+        drwxrwxr-t   2 ubuntu ubuntu 4096 Oct 13 10:34 stiky_dir
+        drwxrwxr-x   4 ubuntu ubuntu 4096 Oct 13 10:34 .
+          ubuntu@ip-172-31-35-11:~/day6$ chmod u+s stiky_dir/
+        
+    SUID        
+            
+        ubuntu@ip-172-31-35-11:~/day6$ ls -lart
+        total 24
+        -rw-rwxrw-+  1 mansi  TWS       0 Oct 13 09:17 demo.txt
+        -rwxrwxr-x   1 ubuntu ubuntu  254 Oct 13 09:46 task4.sh
+        d------r--   2 ubuntu ubuntu 4096 Oct 13 09:47 day6
+        -rwxrwxr-x   1 ubuntu ubuntu  270 Oct 13 10:31 task5.sh
+        drwxr-x---  21 ubuntu ubuntu 4096 Oct 13 10:31 ..
+        drwsrwxr-t   2 ubuntu ubuntu 4096 Oct 13 10:34 stiky_dir
+        drwxrwxr-x   4 ubuntu ubuntu 4096 Oct 13 10:34 .
+
+    SGIP
+          ubuntu@ip-172-31-35-11:~/day6$ chmod g+s stiky_dir/
+          ubuntu@ip-172-31-35-11:~/day6$ ls -lart
+          total 24
+          -rw-rwxrw-+  1 mansi  TWS       0 Oct 13 09:17 demo.txt
+          -rwxrwxr-x   1 ubuntu ubuntu  254 Oct 13 09:46 task4.sh
+          d------r--   2 ubuntu ubuntu 4096 Oct 13 09:47 day6
+          -rwxrwxr-x   1 ubuntu ubuntu  270 Oct 13 10:31 task5.sh
+          drwxr-x---  21 ubuntu ubuntu 4096 Oct 13 10:31 ..
+          drwsrwsr-t   2 ubuntu ubuntu 4096 Oct 13 10:34 stiky_dir
+          drwxrwxr-x   4 ubuntu ubuntu 4096 Oct 13 10:34 .
+
+Task6 : Create a script that backs up the current permissions of files in a directory to a file.
+
+  
+Task: Create another script that restores the permissions from the backup file.
+In case of any doubts, post them on the Discord Community.
+
+Happy Learning!
