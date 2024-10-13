@@ -119,9 +119,25 @@ Backup and Restore Permissions:
           drwxrwxr-x   4 ubuntu ubuntu 4096 Oct 13 10:34 .
 
 Task6 : Create a script that backs up the current permissions of files in a directory to a file.
+          #!/bin/bash
+          #
+          echo "enter the path to backup"
+          read d_path
+          getfacl -R $d_path > perm_backup.txt
+          echo "backup done"
 
   
 Task: Create another script that restores the permissions from the backup file.
 In case of any doubts, post them on the Discord Community.
+
+
+            #!/bin/bash
+            #
+            echo "enter the file path"
+            read f_path
+            setfacl --restore=$f_path
+            echo "permission restore done"
+
+
 
 Happy Learning!
