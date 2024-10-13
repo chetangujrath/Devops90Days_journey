@@ -1,0 +1,114 @@
+Day 4:- 
+What is Kernel?
+  The kernel is a computer program that is the core of a computer’s operating system, with complete control over everything in the system.
+What is Shell?
+  A shell is a special user program that provides an interface for users to interact with operating system services. It accepts human-readable commands from users and converts them into instructions that the kernel can understand. The shell is a command language interpreter that executes commands read from input devices such as keyboards or from files. It starts when the user logs in or opens a terminal.
+What is Linux Shell Scripting?
+  Linux shell scripting involves writing programs (scripts) that can be run by a Linux shell, such as bash (Bourne Again Shell). These scripts automate tasks, perform system administration tasks, and facilitate the interaction between users and the operating system.
+
+Task 1:- Explain in your own words and with examples what Shell Scripting means for DevOps.
+  In DevOps, shell scripting plays a crucial role in automating various tasks and processes. Shell scripting refers to writing a sequence of commands in a file that are executed by the shell (a command-line interpreter). These scripts can automate repetitive tasks, manage system configurations, deploy applications, and monitor infrastructure.
+Task2:- What is #!/bin/bash? Can we write #!/bin/sh as well?
+    #!/bin/bash and #!/bin/sh are called shebangs (or hashbangs), which indicate the interpreter that should be used to execute the script. They tell the system which shell or interpreter to use to run the script.
+    #!/bin/bash
+    •	This line specifies that the script should be executed using the Bash (Bourne Again SHell) interpreter.
+    •	Bash is a more feature-rich shell that includes additional functionalities, such as better scripting syntax, improved string handling, arrays, advanced conditionals, and more.
+    •	It's widely used in many Linux distributions by default as the primary shell.
+    #!/bin/sh
+    •	This line specifies that the script should be executed using the sh interpreter, which refers to the Bourne Shell.
+    •	sh is a more basic and older shell. It is more portable because it is present on almost every Unix-like system.
+    •	In some systems (e.g., modern Linux distributions), /bin/sh may actually be a symbolic link to dash (a more lightweight and POSIX-compliant shell), not the original Bourne Shell.
+    •	Scripts written for sh are often more portable across different Unix-like systems.
+    Key Differences:
+    1.	Features:
+    o	Bash (/bin/bash) has more advanced features (like arrays, [[ ]] for conditionals, and brace expansions) compared to the simpler sh.
+    o	sh is more limited and primarily focuses on being POSIX-compliant, which means it adheres to a standard set of features for compatibility across systems.
+    2.	Compatibility:
+    o	If you use #!/bin/sh, your script is more likely to run on any Unix-based system, even those with a minimal shell like dash.
+    o	If you use #!/bin/bash, the script will rely on the Bash interpreter and its specific features, which may not be available if the system only provides sh or another shell.
+    When to use #!/bin/bash vs. #!/bin/sh:
+    •	Use #!/bin/bash if:
+    o	You are writing scripts that use Bash-specific features.
+    o	You are working in an environment where Bash is guaranteed to be available (e.g., many Linux systems).
+    •	Use #!/bin/sh if:
+    o	You want your script to be highly portable and compatible with a wide range of Unix-like systems.
+    o	You are not using Bash-specific features, and POSIX compliance is sufficient.
+
+Task3:- Write a Shell Script that prints I will complete #90DaysOfDevOps challenge.
+
+      #!\nbin\bash
+      <<note
+        this is multi line comment in shell scripting 
+      note
+
+      echo "I am Chetan Gujrathi From Bharat(MH)"
+
+      echo "I will complete # 90daysofDevops challenge with TWS"
+
+      echo "Thanks for checking my script....!!!!"
+      
+      echo "Updating the basic ubuntu systeam\n"
+
+        sudo apt-get update -y
+        
+        echo "installing tree in system\n"
+        
+        sudo apt install tree -y
+        
+        echo "installing httpd server in ubnutu\n"
+        
+        sudo apt install httpd -y
+        
+        echo "thanks for your patience\n"
+
+Task4:- Write a Shell Script that takes user input, input from arguments, and prints the variables.
+
+  #!\bin\bash
+
+  #get inputs from cli
+
+  $arg1=$1
+  $arg2=$2
+
+  #prompt user for inputs
+
+  read -p "Enter your First name:- " first_name
+  read -p "Enter your last name:- " last_name
+  read -p "Enter your Son name :- " son_name
+  read -p "Enter your wife name :- " w_name
+
+  echo "Your first name is : $first_name"
+  echo "your last name is : $last_name"
+  echo "Your Full name is :- $first_name $last_name"
+  echo "Your Son name is :- $son_name"
+  echo "Your wife name is :- $w_name"
+   
+Task 5:- Provide an example of an If-Else statement in Shell Scripting by comparing two numbers.
+
+ #!/bin/bash
+
+  #prompt for user input
+
+  read -p "enter math mark :- " m_mark
+  read -p "enter chem mark :- " c_mark
+
+  #compare the both number
+
+  if ["$m_mark" -gt "$c_mark"];
+    then
+      echo "$m_mark is greater than $c_mark"
+    elif["$m_mark" -lt "$c_mark"];
+    then
+      echo "$m_mark is less than $c_mark"
+    else
+      echo "$m_mark is eqaul to $c_mark"
+  fi
+
+
+
+  Thank You.... :-)
+    
+ 
+
+ 
+
