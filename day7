@@ -1,0 +1,108 @@
+What is a Package Manager in Linux?
+    In simpler words, a package manager is a tool that allows users to install, remove, upgrade, configure, and manage software packages on an operating system. The package manager can be a graphical application like a software center or a command line tool like apt-get or pacman.
+    You’ll often find me using the term ‘package’ in tutorials and articles. To understand a package manager, you must understand what a package is.
+
+What is a Package?
+    A package is usually referred to as an application but it could be a GUI application, command line tool, or a software library (required by other software programs). A package is essentially an archive file containing the binary executable, configuration file, and sometimes information about the dependencies.
+
+Different Kinds of Package Managers
+    Package managers differ based on the packaging system but the same packaging system may have more than one package manager.
+    For example, RPM has Yum and DNF package managers. For DEB, you have apt-get, aptitude command line-based package managers.
+
+Task1 :- Install Docker and Jenkins:
+
+        Install Docker and Jenkins on your system from your terminal using package managers.
+
+          #!/bin/bash
+          #
+          #
+          #installing docker,jenkins,ssh and so on by using package manager
+          #
+          echo "updating the ubuntu system first "
+          sudo apt-get update -y
+          echo ""
+          echo "installing Docker using package manager in ubuntu 24.0"
+          sudo apt-get install docker -y
+          echo ""
+          echo "Install java for jenkins "
+          sudo apt-get install openjdk-11-jdk -y
+          echo "installing Jenkins using package manager...."
+          sudo apt-get install jenkins -y
+          curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+                  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+          echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+          sudo systemctl start jenkins
+          sudo systemctl enable jenkins
+          sudo ufw allow 8080
+          sudo ufw status
+
+Task2:-  Write a Blog or Article:
+
+Write a small blog or article on how to install these tools using package managers on Ubuntu and CentOS.
+
+           #!/bin/bash
+          #
+          #
+          #installing docker,jenkins,ssh and so on by using package manager
+          #
+          echo "updating the ubuntu system first "
+          sudo yum update -y
+          echo ""
+          echo "installing Docker using package manager in centos"
+          sudo yum install docker -y
+          echo ""
+          echo "Install java for jenkins "
+          sudo yum install openjdk-11-jdk -y
+          echo "installing Jenkins using package manager...."
+          sudo yum install jenkins -y
+          curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+                  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+          echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+          sudo systemctl start jenkins
+          sudo systemctl enable jenkins
+          sudo ufw allow 8080
+          sudo ufw status
+
+Systemctl and Systemd
+    Systemctl is used to examine and control the state of the “systemd” system and service manager. 
+    Systemd is a system and service manager for Unix-like operating systems (most distributions, but not all).
+
+Task1:- Check the status of the Docker service on your system (ensure you have completed the installation tasks above). 
+      systemctl status docker
+    Output:-docker.service - Docker Application Container Engine
+               Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: enabled)
+               Active: active (running) since Tue 2024-10-15 15:35:22 UTC; 14min ago
+               TriggeredBy: ● docker.socket
+               Docs: https://docs.docker.com
+               Main PID: 39367 (dockerd)
+               Tasks: 7
+               Memory: 32.3M (peak: 94.8M)
+               CPU: 250ms
+               CGroup: /system.slice/docker.service
+                       └─39367 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+          
+          Oct 15 15:35:20 ip-172-31-35-11 systemd[1]: Starting docker.service - Docker Application Container Engine...
+          Oct 15 15:35:21 ip-172-31-35-11 dockerd[39367]: time="2024-10-15T15:35:21.647284395Z" level=info msg="Starting up" 
+            
+Task2: Stop the Jenkins service and post before and after screenshots.
+        systemctl status jenkins
+              jenkins.service - Jenkins Continuous Integration Server
+               Loaded: loaded (/usr/lib/systemd/system/jenkins.service; enabled; preset: enabled)
+               Active: active (running) since Tue 2024-10-15 15:37:01 UTC; 15min ago
+             Main PID: 40118 (java)
+                Tasks: 38 (limit: 1130)
+               Memory: 464.4M (peak: 472.6M)
+                  CPU: 35.347s
+               CGroup: /system.slice/jenkins.service
+                       └─40118 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8080
+        systemctl stop jenkins
+               jenkins.service - Jenkins Continuous Integration Server
+               Loaded: loaded (/usr/lib/systemd/system/jenkins.service; enabled; preset: enabled)
+               Active: inactive (dead) since Tue 2024-10-15 15:53:56 UTC; 4s ago
+             Duration: 16min 55.194s
+              Process: 40118 ExecStart=/usr/bin/jenkins (code=exited, status=143)
+             Main PID: 40118 (code=exited, status=143)
+               Status: "Jenkins stopped"
+                  CPU: 35.665s
+
+            
