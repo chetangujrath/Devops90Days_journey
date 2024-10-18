@@ -105,4 +105,128 @@ Task2: Stop the Jenkins service and post before and after screenshots.
                Status: "Jenkins stopped"
                   CPU: 35.665s
 
-            
+Task 3:- Read About Systemctl vs. Service:
+        The systemctl and service commands are used to manage services on Linux systems, but they differ in terms of functionality, system compatibility, and underlying architecture. Here's a breakdown of the key differences:
+
+1. Underlying System:
+    systemctl: It is part of the systemd system and service manager, which is the modern and more widely used init system in most major 
+                Linux distributions like Ubuntu (since 15.04), Fedora, CentOS (since 7), and Arch Linux. systemctl interacts with systemd to control
+                and manage system services, units, and daemons.
+    service: This command is part of the System V (SysV) init system, which is older. While many distributions have moved to systemd,
+                service is still available as a backward-compatible wrapper on some systems for managing SysV-style init scripts.
+2. Service Management:
+        systemctl: It provides more advanced and fine-grained control over services, including starting, stopping, restarting, enabling (start at boot),
+        disabling, checking status, and much more. It can manage different types of systemd units, not just services (e.g., mount units, socket units, timer units).
+    Example:- 
+            systemctl start <service_name>
+            systemctl stop <service_name>
+            systemctl restart <service_name>
+            systemctl enable <service_name>  # Enables the service to start at boot
+            systemctl disable <service_name> # Disables the service from starting at boot
+            systemctl status <service_name>  # Shows the status of the service
+        
+        service: It provides basic functionality to start, stop, and restart services. It doesn't offer the full suite of capabilities that systemctl does. Typically, it works with SysV init scripts located in /etc/init.d/ but can be used to manage 
+                services on systems with systemd as well (via compatibility).
+    Example :- 
+            service <service_name> start
+            service <service_name> stop
+            service <service_name> restart
+3. Service Status and Logs:
+        systemctl: Offers much more detailed status information. It not only shows whether a service is running but also its dependencies, start time, 
+            and logs (via journalctl).
+            Example:
+                systemctl status <service_name>
+                journalctl -u <service_name>  # View detailed logs for the service
+        service: It can provide basic status information about a service (running or stopped), but it doesn’t offer the comprehensive details provided by systemctl.
+            Example:
+                service <service_name> status
+4. Boot-time Management:
+        systemctl: systemctl enable and systemctl disable control whether services should start at boot. Additionally, it manages the boot target
+            (similar to runlevels in SysV), allowing control over what services run during different boot stages.
+        service: On SysV systems, chkconfig or editing init scripts were used to configure which services start at boot, and there is no direct
+            equivalent command in service itself for managing boot-time configuration.
+5. Compatibility:
+        systemctl: Works only on systems that use systemd. It is more modern and recommended for managing services on systemd-based systems.
+        service: While it's meant for SysV init systems, many modern distributions provide service as a compatibility layer, 
+            allowing it to be used as a front-end to systemctl for simpler service management.
+6. Controlling Other Unit Types:
+        systemctl: Manages various types of units in systemd, including services (*.service), mount points 
+            (*.mount), timers (*.timer), sockets (*.socket), and targets (*.target).
+        Example:
+            systemctl list-units --type=service  # List all active services
+            systemctl list-units --type=socket   # List all active sockets
+            service: Limited to services, it does not offer control over other unit types like systemd does.
+7. Parallelism and Dependencies:
+        systemctl: One of the strengths of systemd is its parallelism, which means that services can be started in parallel,
+            optimizing the boot process. Additionally, systemd manages dependencies between services, ensuring they are started in the right order.
+        service: SysV is more sequential in its service handling, and any service dependencies have to be managed manually through the init scripts.
+8. Common Usage Context:
+        systemctl: Should be the go-to command for systems using systemd. It is powerful and versatile.
+        service: While still available for backward compatibility and simple tasks, it's generally less preferred on modern systemd-based systems.
+
+Task 4:- Automate Service Management:
+        Write a script to automate the starting and stopping of Docker and Jenkins services.
+            #!/bin/bash
+            #Script for start and stop Docker and Jenkins services.
+            echo "Enter the service to start & stop (docker or jenkins)"
+            read service
+            echo "Enter the service action (start / stop / restart)"
+            read action
+            sudo systemctl $action $service
+            echo "$service is $action Sucessfully...!!!"
+            sudo systemctl status $service
+Task 5:- Enable and Disable Services:
+        Use systemctl to enable Docker to start on boot and disable Jenkins from starting on boot.
+        systemctl enable jenkins
+                jenkins.service - Jenkins Continuous Integration Server
+                Loaded: loaded (/usr/lib/systemd/system/jenkins.service; enabled; preset: enabled)
+                Active: active (running) since Fri 2024-10-18 13:04:05 UTC; 2min 53s ago
+                Main PID: 2454 (java)
+                Tasks: 38 (limit: 1130)
+                Memory: 260.5M (peak: 261.5M)
+                CPU: 15.059s
+                CGroup: /system.slice/jenkins.service
+                         └─2454 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8080
+        systemctl stop jenkins
+        systemctl status jenkins
+                jenkins.service - Jenkins Continuous Integration Server
+                Loaded: loaded (/usr/lib/systemd/system/jenkins.service; enabled; preset: enabled)
+                Active: inactive (dead) since Fri 2024-10-18 13:08:39 UTC; 2s ago
+                Duration: 4min 33.804s
+                Process: 2454 ExecStart=/usr/bin/jenkins (code=exited, status=143)
+                Main PID: 2454 (code=exited, status=143)
+                Status: "Jenkins stopped"
+                CPU: 15.430s
+Task 6:- Use journalctl to analyze the logs of the Docker and Jenkins services. Post your findings.
+       Jenkins Log
+    Starting jenkins.service - Jenkins Continuous Integration Server...
+                Oct 15 15:36:49 ip-172-31-35-11 jenkins[40118]: Running from: /usr/share/java/jenkins.war
+                Oct 15 15:36:49 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:49.946+0000 [id=1]        INFO        winstone.Logger#logInternal: Beginning extraction from war file
+                Oct 15 15:36:51 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:51.234+0000 [id=1]        WARNING        o.e.j.ee9.nested.ContextHandler#setContextPath: Empty context>
+                Oct 15 15:36:51 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:51.392+0000 [id=1]        INFO        org.eclipse.jetty.server.Server#doStart: jetty-12.0.14; built: 2>
+                Oct 15 15:36:52 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:52.335+0000 [id=1]        INFO        o.e.j.e.w.StandardDescriptorProcessor#visitServlet: NO JSP Suppo>
+                Oct 15 15:36:52 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:52.456+0000 [id=1]        INFO        o.e.j.s.DefaultSessionIdManager#doStart: Session workerName=node0
+                Oct 15 15:36:53 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:53.302+0000 [id=1]        INFO        hudson.WebAppMain#contextInitialized: Jenkins home directory: /v>
+                Oct 15 15:36:53 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:53.671+0000 [id=1]        INFO        o.e.j.s.handler.ContextHandler#doStart: Started oeje9n.ContextHa>
+                Oct 15 15:36:53 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:53.709+0000 [id=1]        INFO        o.e.j.server.AbstractConnector#doStart: Started ServerConnector@>
+                Oct 15 15:36:53 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:53.760+0000 [id=1]        INFO        org.eclipse.jetty.server.Server#doStart: Started oejs.Server@7fb>
+                Oct 15 15:36:53 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:53.761+0000 [id=25]        INFO        winstone.Logger#logInternal: Winstone Servlet Engine running: c>
+                Oct 15 15:36:54 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:54.213+0000 [id=31]        INFO        jenkins.InitReactorRunner$1#onAttained: Started initialization
+                Oct 15 15:36:54 ip-172-31-35-11 jenkins[40118]: 2024-10-15 15:36:54.239+0000 [id=30]        INFO        jenkins.InitReactorRunner$1#onAttained: Listed all plugins
+        
+        Docker
+                journalctl -u docker
+                Oct 13 04:38:44 ip-172-31-35-11 systemd[1]: Starting docker.service - Docker Application Container Engine...
+                Oct 13 04:38:44 ip-172-31-35-11 dockerd[3256]: time="2024-10-13T04:38:44.850746273Z" level=info msg="Starting up"
+                Oct 13 04:38:44 ip-172-31-35-11 dockerd[3256]: time="2024-10-13T04:38:44.854627724Z" level=info msg="detected 127.0.0.53 nameserver, assuming systemd-resolved, so usin>
+                Oct 13 04:38:45 ip-172-31-35-11 dockerd[3256]: time="2024-10-13T04:38:45.007324105Z" level=info msg="Loading containers: start."
+                Oct 13 04:38:45 ip-172-31-35-11 dockerd[3256]: time="2024-10-13T04:38:45.293289713Z" level=info msg="Loading containers: done."
+                Oct 13 04:38:45 ip-172-31-35-11 dockerd[3256]: time="2024-10-13T04:38:45.401349089Z" level=info msg="Docker daemon" commit=24.0.7-0ubuntu4.1 graphdriver=overlay2 versi>
+                Oct 13 04:38:45 ip-172-31-35-11 dockerd[3256]: time="2024-10-13T04:38:45.401428322Z" level=info msg="Daemon has completed initialization"
+                Oct 13 04:38:45 ip-172-31-35-11 dockerd[3256]: time="2024-10-13T04:38:45.456755068Z" level=info msg="API listen on /run/docker.sock"
+                Oct 13 04:38:45 ip-172-31-35-11 systemd[1]: Started docker.service - Docker Application Container Engine.
+                Oct 15 15:05:55 ip-172-31-35-11 systemd[1]: Stopping docker.service - Docker Application Container Engine...
+                Oct 15 15:05:55 ip-172-31-35-11 dockerd[3256]: time="2024-10-15T15:05:55.076606429Z" level=info msg="Processing signal 'terminated'"
+                Oct 15 15:05:55 ip-172-31-35-11 dockerd[3256]: time="2024-10-15T15:05:55.171171775Z" level=info msg="Daemon shutdown complete"
+                Oct 15 15:05:55 ip-172-31-35-11 systemd[1]: docker.service: Deactivated successfully.
+                Oct 15 15:05:55 ip-172-31-35-11 systemd[1]: Stopped docker.service - Docker Application Container Engine.
