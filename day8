@@ -1,0 +1,90 @@
+Day 8 Shell Scripting Challenge
+  Task 1 :- Comments
+      In bash scripts, comments are used to add explanatory notes or disable certain lines of code. Your task is to create a 
+      bash script with comments explaining what the script does.
+            #!/bin/bash
+              #
+              #
+              echo "This is single line comment below in linux"
+              
+              echo "# this is single line comment.... !"
+              
+              echo "This is multiline comment in linux"
+              
+              echo "<<comment this is multiline comment  \n
+                      comment here is \n
+                      comment>>"
+  Task 2: Echo
+      The echo command is used to display messages on the terminal. Your task is to create a bash script that uses echo to print a message of your choice.
+
+        #!/bin/bash
+        #this is echo example in linux
+        echo "This is the echo statement in the 8th days task "
+        echo""
+        echo "We will display the current date and time"
+        echo ""
+        date
+        echo ""
+        echo "Thanks for checking.....!"
+
+  Task 3: Variables
+      Variables in bash are used to store data and can be referenced by their name. Your task is to create a bash script that declares variables and assigns 
+        values to them.
+        #!/bin/bash
+        #
+        #We will declare varible with example
+        #
+        name="Chetan Gujrathi"
+        designation="SSE"
+        company="Techm"
+        
+        echo "I am $name and my Post is $designation and working in $company .....!!!!"
+        
+        echo "Thanks for checking....!!!!"
+
+  Task 4: Using Variables
+      Now that you have declared variables, let's use them to perform a simple task. Create a bash script that takes two variables (numbers) as input and prints their 
+        sum using those variables.
+        #!/bin/bash
+        #
+        #
+        #We will perform the mathematical operation in this script with example
+            
+        n1=15
+        n2=60
+        echo "This is the addition example...!!!"
+        echo ""
+        add=$((n1 + n2))
+        echo ""
+        echo "The Addition of $n1 and $n2 is equal to $add ..."
+        echo ""
+        echo "This is the Substraction example... !!!"
+        echo""
+        sub=$((n2 - n1))
+        echo "The substraction of $n2 and $n1 is equal to $sub ..."
+        echo ""
+Task 5: Using Built-in Variables
+        Bash provides several built-in variables that hold useful information. Your task is to create a bash script that utilizes at least three different built-in 
+        variables to display relevant information.
+
+        #!/bin/bash
+        #
+        #
+        echo "Specifies directories where the system looks for executable files. $PATH"
+        echo ""
+        echo "Contains the current logged-in username. .. $USER"
+        echo""
+        echo "Displays the current working directory. $PWD"
+        echo ""
+        echo "Display curent userid $UID"
+        echo "Thanks for checking ....!!!!"
+Task 6: Wildcards
+        Wildcards are special characters used to perform pattern matching when working with files. Your task is to create a bash script that utilizes wildcards 
+        to list all the files with a specific extension in a directory.
+              #!/bin/bash
+              #
+              #we will use wildcard in this example.
+              #
+              echo "We will use wildcard matching for lsiting file .sh files "
+              ls *.sh
+        
