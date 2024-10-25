@@ -1,0 +1,11 @@
+date of troubleshoot/analysis:- 2024-10-25
+log file details :- /home/ubuntu/Devops90DaysChallange/Devops90Days_journey/day-wise-task/day10/zookeper.log
+TOTAL lines processed :- 3999
+Total error counts are :- 1337
+the critical errors are as follows  :- 
+top 5 error messages with oc-count :-
+72   [QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:2181:FastLeaderElection@774] - Notification time out: 60000
+6   [main:DatadirCleanupManager@79] - autopurge.purgeInterval set to 0
+4   [main:QuorumPeer@933] - minSessionTimeout set to -1
+4   [WorkerReceiver[myid=3]:FastLeaderElection@542] - Notification: 3 (n.leader), 0x0 (n.zxid), 0x1 (n.round), LOOKING (n.state), 3 (n.sid), 0x0 (n.peerEPoch), LOOKING (my state)
+4   [WorkerReceiver[myid=2]:FastLeaderElection@542] - Notification: 1 (n.leader), 0xb0000007b (n.zxid), 0x2 (n.round), LOOKING (n.state), 1 (n.sid), 0xb (n.peerEPoch), LEADING (my state)
