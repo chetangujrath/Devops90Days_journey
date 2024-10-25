@@ -1,0 +1,20 @@
+What is the difference between Main Branch and Master Branch?
+
+The main branch and master branch are common default branch names in Git repositories, often used interchangeably, but there are some distinctions largely influenced by conventions and evolving practices:
+
+Key Differences
+Naming Convention:
+
+Master: Historically, Git initialized repositories with a default branch called master. It was widely used as the primary branch in most Git repositories.
+Main: In recent years, many platforms (like GitHub, GitLab, and others) have transitioned to using main as the default branch name instead of master, primarily to adopt more inclusive language.
+Repository Initialization:
+
+Older Repositories: Repositories created before this shift often still have a master branch as the default.
+Newer Repositories: Most new repositories initialized on platforms like GitHub now use main by default, although users can configure the default branch name during repository setup.
+Function:
+
+Both main and master branches serve the same purpose: they typically contain the mainline codebase and reflect the most stable, production-ready version of a project.
+Primary Branch Role: Whether named main or master, this primary branch is usually where the latest, stable code is merged after it has been tested and reviewed in feature branches.
+Adoption:
+
+The move to main as the default branch name has been widely adopted across the software development community, especially in open-source and corporate settings. This transition reflects a broader effort to use inclusive and neutral terminology.

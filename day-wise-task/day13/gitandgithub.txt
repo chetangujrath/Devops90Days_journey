@@ -1,0 +1,25 @@
+Git
+Git is an open-source, distributed version control system (VCS) that developers use to manage and track changes in their code. 
+It was created by Linus Torvalds in 2005 to handle the development of the Linux kernel but has since become the most widely used version control system worldwide.
+
+Key Features of Git:
+
+Version Control: Git tracks every change made to the code, allowing developers to revert to previous versions if needed.
+
+Branching and Merging: Git makes it easy to create branches, or separate versions of code, for experimentation, new features, or bug fixes. These branches can be merged back into the main codebase when changes are ready.
+
+Distributed System: With Git, every developer has a complete local copy of the repository, including the entire history, allowing for offline work and higher reliability.
+
+GitHub
+
+GitHub is a web-based platform built on top of Git that provides hosting for Git repositories along with collaboration and project management features. Founded in 2008 and later acquired by Microsoft, GitHub is one of the most popular platforms for developers to share code, manage projects, and collaborate on open-source and private repositories.
+
+Key Features of GitHub:
+
+Remote Repository Hosting: GitHub provides cloud-based storage for Git repositories, making it easy to share code with others.
+
+Collaboration Tools: GitHub offers tools like pull requests, code reviews, issue tracking, and discussions to help teams collaborate more effectively.
+
+Integrated CI/CD: GitHub Actions allows teams to set up automated testing, deployment, and other workflows.
+
+Social Coding: GitHub enables developers to follow others, star repositories, and contribute to open-source projects, fostering a community of collaboration and sharing.

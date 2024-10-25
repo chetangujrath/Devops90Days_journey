@@ -1,0 +1,12 @@
+What is the difference between a local & remote repository? How to connect local to remote?
+
+Local Repository:
+Stored on your local machine.
+Contains your working directory and Git database.
+
+Remote Repository:
+Hosted on a server (e.g., GitHub).
+Allows collaboration with other developers.
+Connecting Local to Remote:
+Initialize a local repository: git init
+Add a remote: git remote add origin <URL>

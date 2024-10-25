@@ -1,0 +1,7 @@
+How do you create a new repository on GitHub?
+
+Go to GitHub.
+Click on the + icon in the top right corner.
+Select New repository.
+Enter a repository name (e.g., "DevOps").
+Click Create repository.
