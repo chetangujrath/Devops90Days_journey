@@ -1,0 +1,3 @@
+cat: non_exist_file.txt: No such file or directory
+Error : failed to load the error message or file 'non_exist_file.txt'.
+the file may not exist or there might be a permission issue.. 
