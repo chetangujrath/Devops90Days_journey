@@ -1,0 +1,35 @@
+# file: home/ubuntu/day4
+# owner: ubuntu
+# group: ubuntu
+user::rwx
+group::rwx
+other::r-x
+
+# file: home/ubuntu/day4/task6.sh
+# owner: root
+# group: root
+user::rwx
+group::r-x
+other::r-x
+
+# file: home/ubuntu/day4/task5.sh
+# owner: root
+# group: root
+user::rwx
+group::r-x
+other::r-x
+
+# file: home/ubuntu/day4/task3.sh
+# owner: root
+# group: root
+user::rwx
+group::r-x
+other::r-x
+
+# file: home/ubuntu/day4/task4.sh
+# owner: root
+# group: root
+user::rwx
+group::r-x
+other::r-x
+
